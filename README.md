@@ -59,6 +59,27 @@
 
 前端默认运行在 `http://127.0.0.1:3000`，`/api/*` 会代理到 `http://127.0.0.1:4000`。
 
+## 4. 部署成网页
+
+推荐直接部署到 Render。当前项目已经支持由 Express 同时托管前端打包产物和 `/api/*` 接口。
+
+1. 打开 Render，选择 `New +` -> `Blueprint`
+2. 连接 GitHub 仓库：`https://github.com/vanghuaijin-prog/zhijing-app`
+3. Render 会自动识别仓库根目录下的 `render.yaml`
+4. 在创建页面补充环境变量：
+
+- `SUPABASE_URL`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `APP_JWT_SECRET`
+
+部署完成后，你会拿到一个类似 `https://zhijing-app.onrender.com` 的公网地址，手机和电脑都可以直接用浏览器打开。
+
+注意：
+
+- 线上部署时不需要设置 `VITE_API_BASE_URL`
+- 前端会默认走同域请求，也就是直接访问当前网页所在域名下的 `/api/*`
+- `SUPABASE_SERVICE_ROLE_KEY` 只能放在 Render 这类服务端环境变量里，不能暴露到前端
+
 ## 当前已打通的能力
 
 - 登录 / 注册 / 找回密码
